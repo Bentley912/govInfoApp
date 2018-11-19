@@ -7,10 +7,11 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import AddressForm from '../components/AddressForm';
+import { Button } from 'react-native-elements';
 
 import { MonoText } from '../components/StyledText';
 
@@ -18,50 +19,16 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
-  constructor(props){
-    super(props);
-    state = {
-      API_KEY: 'AIzaSyDX5pF_dDPROq0CWmRwlGrdi2NOEwBGlTI',
-      line1: '1801LloydSt',
-      city: 'Savannah',
-      state: 'Georgia',
-      zip: '31405',
-    };
-
-  };
-
-      
-  _getVoterInfo(){
-    fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + state.API_KEY + '&address='  + state.line1 + '%20' + state.city + '%20' + state.state + '%20' + state.zip)
-    .then(function(data){
-      results = data.json().then(function(data){
-        console.log(data.officials[0]);
-      });
-     
-    })
-    .catch(function(error){
-      console.log(error);
-    })
+  state = {
+    API_KEY: 'AIzaSyDX5pF_dDPROq0CWmRwlGrdi2NOEwBGlTI',
   }
 
+ 
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-
-
-          <View style={styles.getStartedContainer}>
-
-            <Button 
-             title="Get Info"
-             onPress={this._getVoterInfo}
-            />
-
-
-          </View>
-
-
+          <AddressForm API_KEY={this.state.API_KEY} />
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
