@@ -27,7 +27,19 @@ import {
     handleLine1 = (text) => {
         this.setState({ line1: text })
         console.log(this.state);
-     }
+    }
+    handleCity = (text) => {
+        this.setState({ city: text })
+        console.log(this.state);
+    }
+    handleState = (text) => {
+        this.setState({state: text })
+        console.log(this.state);
+    }
+    handleZip = (text) => {
+        this.setState({ zip: text })
+        console.log(this.state);
+    }
 
     _getVoterInfo(){
         // fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + state.API_KEY + '&address='  + state.line1 + '%20' + state.city + '%20' + state.state + '%20' + state.zip)
@@ -49,14 +61,20 @@ import {
 
             <FormLabel>Address Line 1</FormLabel>
             <FormInput 
-            onChangeText={this.handleLine1}
+            	onChangeText={this.handleLine1}
             />
             <FormLabel>City</FormLabel>
-            <FormInput />
+            <FormInput 
+							onChangeText={this.handleCity}
+            />
             <FormLabel>State</FormLabel>
-            <FormInput />
+            <FormInput 
+							onChangeText={this.handleState}
+						/>
             <FormLabel>Zip</FormLabel>
-            <FormInput />
+            <FormInput 
+							onChangeText={this.handleZip}
+						/>
             
             <Button
              raised
