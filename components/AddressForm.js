@@ -7,7 +7,6 @@ import {
 import { 
     FormLabel, 
     FormInput, 
-    FormValidationMessage,
     Button,
   } from 'react-native-elements'
 
@@ -15,37 +14,33 @@ import {
     constructor(props){
         super(props);
         this.state = {
-         
           line1: '',
           city: '',
           state: '',
           zip: '',
         };
-
     }
 
     handleLine1 = (text) => {
-        this.setState({ line1: text })
-        console.log(this.state);
+				this.setState({ line1: text })
+				this.setState({line1: linereplace(/\s/g,'')})
+				console.log(this.state);
     }
     handleCity = (text) => {
         this.setState({ city: text })
-        console.log(this.state);
     }
     handleState = (text) => {
         this.setState({state: text })
-        console.log(this.state);
     }
     handleZip = (text) => {
         this.setState({ zip: text })
-        console.log(this.state);
     }
 
     _getVoterInfo(){
-        // fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + state.API_KEY + '&address='  + state.line1 + '%20' + state.city + '%20' + state.state + '%20' + state.zip)
+        // fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + this.props.API_KEY + '&address='  + state.line1 + '%20' + state.city + '%20' + state.state + '%20' + state.zip)
         // .then(function(data){
         //   results = data.json().then(function(data){
-        //     console.log(data.officials[0]);
+        //     console.log(data.offices);
         //   });
          
         // })
