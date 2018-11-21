@@ -10,6 +10,8 @@ import {
     Button,
   } from 'react-native-elements'
 
+  import InfoButton from './InfoButton';
+
   export default class AddressForm extends React.Component {
     constructor(props){
         super(props);
@@ -22,9 +24,7 @@ import {
     }
 
     handleLine1 = (text) => {
-				this.setState({ line1: text })
-				this.setState({line1: linereplace(/\s/g,'')})
-				console.log(this.state);
+		this.setState({ line1: text })		
     }
     handleCity = (text) => {
         this.setState({ city: text })
@@ -46,8 +46,8 @@ import {
         // })
         // .catch(function(error){
         //   console.log(error);
-        // })                   
-      }
+				// })                   
+    }
     
     render() {
         return (
@@ -60,23 +60,18 @@ import {
             />
             <FormLabel>City</FormLabel>
             <FormInput 
-							onChangeText={this.handleCity}
+			    onChangeText={this.handleCity}
             />
             <FormLabel>State</FormLabel>
             <FormInput 
-							onChangeText={this.handleState}
-						/>
+				onChangeText={this.handleState}
+			/>
             <FormLabel>Zip</FormLabel>
             <FormInput 
-							onChangeText={this.handleZip}
-						/>
+				onChangeText={this.handleZip}
+			/>
             
-            <Button
-             raised
-             icon={{name: 'cached'}}
-             title="Get Info"
-             onPress={this._getVoterInfo}
-            />
+            <InfoButton info={this.state} API_KEY={this.props.API_KEY} />
           </View>
         )
     }

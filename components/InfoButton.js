@@ -1,31 +1,44 @@
 import React from 'react';
 import { 
-    View, 
-    StyleSheet, 
-} from 'react-native';
-
-import { 
     Button,
 } from 'react-native-elements'
 
 
 export default class InfoButton extends React.Component {
     constructor(props){
-        super(props);
+		super(props);
+		this.state = {
+			line1:'',
+		}
+		this.getVoterInfo = this.getVoterInfo.bind(this);
     }
 
-	_getVoterInfo(){
-			// fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + this.props.API_KEY + '&address='  + state.line1 + '%20' + state.city + '%20' + state.state + '%20' + state.zip)
-			// .then(function(data){
-			//   results = data.json().then(function(data){
-			//     console.log(data.offices);
-			//   });
-			
-			// })
-			// .catch(function(error){
-			//   console.log(error);
-							// })                   
+	getVoterInfo(){
+		fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=' + API_KEY + '&address='  + newLine1 + '%20' + newCity + '%20' + newState + '%20')
+		.then(function(data){
+			results = data.json().then(function(data){
+			console.log(data);
+			});
+		
+		})
+		.catch(function(error){
+			console.log(error);
+		})  
+		console.log('Request Url:' + ('https://www.googleapis.com/civicinfo/v2/representatives?key=' + API_KEY + '&address='  + newLine1 + '%20' + newCity + '%20' + newState + '%20'))
 	}
+
+		componentDidMount(){
+			console.log(this.props);
+			API_KEY = this.props.API_KEY;
+		}
+
+		componentDidUpdate(){
+			//Logic adds '%20' to spaces in address fields in order to correctly query the API correctly
+			newLine1 = (this.props.info.line1.split(' ').join('%20'));
+			newCity = (this.props.info.city.split(' ').join('%20'));
+			newState = (this.props.info.state.split(' ').join('%20'));
+			console.log(newLine1);
+		}
 
     render() {
         return (
@@ -33,9 +46,8 @@ export default class InfoButton extends React.Component {
             raised
             icon={{name: 'cached'}}
             title="Get Info"
-            onPress={this._getVoterInfo}
+            onPress={this.getVoterInfo}
         	/>
-
         )
     }
 
