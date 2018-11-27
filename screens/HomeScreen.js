@@ -27,8 +27,8 @@ export default class HomeScreen extends React.Component {
     API_KEY: 'AIzaSyDX5pF_dDPROq0CWmRwlGrdi2NOEwBGlTI',
   }
 
-  onButtonPress(){
-    this.props.navigation.navigate('Settings');
+  onButtonPress(data){
+    this.props.navigation.navigate('Settings', {data});
   }
   render() {
     return (

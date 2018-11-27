@@ -24,8 +24,8 @@ export default class InfoButton extends React.Component {
 		.then((data) => {
 			this.setState({data, isFetching:false});
 			this.props.onFetchEnd();
-			console.log(this.state.data);
-			this.props.onButtonPress();
+			// console.log(this.state.data);
+			this.props.onButtonPress(data);
 			});
 		})
 		.catch((error) => {
