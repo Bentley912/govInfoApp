@@ -3,7 +3,7 @@ import {
 	View,
 	ActivityIndicator,
 } from 'react-native'
-
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { 
     Button,
 } from 'react-native-elements'
@@ -25,7 +25,7 @@ export default class InfoButton extends React.Component {
 			this.setState({data, isFetching:false});
 			this.props.onFetchEnd();
 			console.log(this.state.data);
-			console.log('Ended Fetch:' + this.props.isFetching);
+			this.props.onButtonPress();
 			});
 		})
 		.catch((error) => {
@@ -34,7 +34,7 @@ export default class InfoButton extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log(this.state);
+		console.log(this.props);
 		API_KEY = this.props.API_KEY;
 	}
 

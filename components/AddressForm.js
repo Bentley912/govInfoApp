@@ -65,6 +65,7 @@ import InfoButton from './InfoButton';
                       onFetchEnd={() => {
                         this.setState({isFetching: false});
                       }}
+                      onButtonPress={this.props.onButtonPress}
                 />
             </View>
         )
