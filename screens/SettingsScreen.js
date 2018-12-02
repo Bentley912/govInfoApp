@@ -1,24 +1,62 @@
 import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+} from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
+import { 
+  Card,
+  Button,
+  Icon,
+} from 'react-native-elements';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        params: props.navigation.state.params
+        params: props.navigation.state.params,
+        offices:props.navigation.state.params.data.offices,
+        reps:props.navigation.state.params.data.officials,
     }
-}
+    this.renderOffices = this.renderOffices.bind(this);
+  }
   
   static navigationOptions = {
-    title: 'app.json',
+    title: 'Your Representatives',
   };
 
   componentDidMount(){
-    console.log(this.state);
+    console.log(this.state.reps[this.state.offices[2].officialIndices[0]]);
+  }
+
+  renderOffices(){
+    // return this.state.offices.map(() =>   
+    // this.state.offices.map()
+    //   //Key should be a unique identifier of each item
+    //   //Ideally, an 'id' is usually the best key if you have one
+    //   <Text>
+    //     Office Goes Here
+    //   </Text>
+    // );
   }
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return(
+        this.state.offices.map((office,index) =>   
+
+        <Card
+        title={office.name}
+        >
+        <Text style={{marginBottom: 10}}>
+          Name: {this.state.reps[office.officialIndices[0]].name}
+        </Text>
+        <Button
+          icon={<Icon name='code' color='#ffffff' />}
+          backgroundColor='#03A9F4'
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          title='VIEW NOW' />
+        </Card>
+        )
+    )
   }
 }
