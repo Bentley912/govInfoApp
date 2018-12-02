@@ -4,12 +4,9 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import { ExpoConfigView } from '@expo/samples';
-import { 
-  Card,
-  Button,
-  Icon,
-} from 'react-native-elements';
+
+
+import RepCard from '../components/RepCard';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -27,48 +24,19 @@ export default class SettingsScreen extends React.Component {
   };
 
   componentDidMount(){
-    console.log(this.state.reps[this.state.offices[2].officialIndices[0]]);
+    console.log(this.state);
   }
 
   renderOffices(){
-    // return this.state.offices.map(() =>   
-    // this.state.offices.map()
-    //   //Key should be a unique identifier of each item
-    //   //Ideally, an 'id' is usually the best key if you have one
-    //   <Text>
-    //     Office Goes Here
-    //   </Text>
-    // );
+    return this.state.offices.map((office, index) =>  
+        <RepCard key={index} office={office} reps={this.state.reps} />
+    );
   }
   render() {
     return(
-        this.state.offices.map((office,index) =>   
-
-        <Card
-        title={office.name}
-        >
-        <Text style={{marginBottom: 10}}>
-          Name: {this.state.reps[office.officialIndices[0]].name}
-        </Text>
-        <Text>
-          Address: {this.state.reps[office.officialIndices[0]].address[0].line1}
-        </Text>
-        <Text>
-          City: {this.state.reps[office.officialIndices[0]].address[0].city}
-        </Text>
-        <Text>
-          State: {this.state.reps[office.officialIndices[0]].address[0].state}
-        </Text>
-        <Text>
-          Address: {this.state.reps[office.officialIndices[0]].address[0].zip}
-        </Text>
-        <Button
-          icon={<Icon name='code' color='#ffffff' />}
-          backgroundColor='#03A9F4'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='VIEW NOW' />
-        </Card>
-        )
+        <ScrollView>
+          {this.renderOffices()}
+        </ScrollView>
     )
   }
 }
