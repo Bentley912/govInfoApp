@@ -50,6 +50,18 @@ export default class SettingsScreen extends React.Component {
         <Text style={{marginBottom: 10}}>
           Name: {this.state.reps[office.officialIndices[0]].name}
         </Text>
+        <Text>
+          Address: {this.state.reps[office.officialIndices[0]].address[0].line1}
+        </Text>
+        <Text>
+          City: {this.state.reps[office.officialIndices[0]].address[0].city}
+        </Text>
+        <Text>
+          State: {this.state.reps[office.officialIndices[0]].address[0].state}
+        </Text>
+        <Text>
+          Address: {this.state.reps[office.officialIndices[0]].address[0].zip}
+        </Text>
         <Button
           icon={<Icon name='code' color='#ffffff' />}
           backgroundColor='#03A9F4'
