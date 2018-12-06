@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  View,
   Text,
-  ScrollView,
 } from 'react-native';
 
 import { 
   Card,
   Button,
   Icon,
+  Divider,
+  Avatar,
 } from 'react-native-elements';
 
 export default class RepCard extends React.Component {
@@ -17,13 +17,21 @@ export default class RepCard extends React.Component {
     }
 
     componentDidMount(){
-        console.log('Card Props: ' + this.props);
+
+      console.log(this.props.reps[1].photoUrl)
     }
     render(){
         return(
             <Card
             title={this.props.office.name}
             >
+            <Avatar
+                large
+                rounded
+                source={{uri:this.props.reps[this.props.office.officialIndices[0]].photoUrl }}
+                onPress={() => console.log("Works!")}
+                activeOpacity={0.7}
+            />
             <Text style={{marginBottom: 10}}>
               Name: {this.props.reps[this.props.office.officialIndices[0]].name}
             </Text>
@@ -39,6 +47,9 @@ export default class RepCard extends React.Component {
             <Text>
               Zip: {this.props.reps[this.props.office.officialIndices[0]].address[0].zip}
             </Text>
+            <Divider style={{ backgroundColor: 'blue' }} />
+            <Text style={{textAlign:'center', fontWeight: 'bold'}}> Contact Information </Text>
+            <Text> Phone: {this.props.reps[this.props.office.officialIndices[0]].phones[0]}</Text>
             <Button
               icon={<Icon name='code' color='#ffffff' />}
               backgroundColor='#03A9F4'

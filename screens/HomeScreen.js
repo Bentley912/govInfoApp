@@ -9,10 +9,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import AddressForm from '../components/AddressForm';
-
-
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
